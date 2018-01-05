@@ -1,0 +1,20 @@
+<template>
+  <require from="resources/elements/node/nic"></require>
+  <require from="resources/elements/node/node"></require>
+
+  <h3 class="ui center aligned orange header">Sizer</h3>
+  <button class="ui button" click.delegate="open_node_modal(-1)" class="ui button">
+    New Node
+  </button>
+  <button class="ui button" click.delegate="open_node_modal(0)" class="ui button">
+    Edit Node
+  </button>
+  <button class="ui button">
+    Disk Modal
+  </button>
+  <div click.delegate="open_nic_modal()" class="ui button">
+    NIC Modal
+  </div>
+  <nic></nic>
+  <node my_node.bind="mynode"><node>
+</template>
