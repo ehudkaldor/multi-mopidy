@@ -1,0 +1,55 @@
+<template>
+  <require from="resources/attributes/dropdownCustomAttribute"></require>
+
+  <div class="ui tiny modal" id="disk_type_modal">
+    <i class="close icon"></i>
+    <h3 class="ui inverted attached header">
+      ${activity_word} Disk Type ${my_disk_type_model.name}
+    </h3>
+    <div class="content">
+      <div class="ui form">
+
+        <div class="field">
+          <label>Name Your Disk Type</label>
+          <input placeholder="Disk Type Name" type="text" value.bind="my_disk_type_model.name">
+        </div>
+
+        <div class="field">
+          <label>Disk Type</label>
+          <div class="ui selection dropdown" s-dropdown>
+            <input name="media_type" type="hidden" value.bind="my_disk_type_model.disk_type_index">
+            <i class="dropdown icon"></i>
+            <div class="default text">Type</div>
+            <div class="menu">
+              <div repeat.for="media_type of mediaTypes()" class="item" data-value="${mediaTypes().indexOf(media_type)}">${media_type}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two fields">
+          <div class="field">
+            <label>Capacity</label>
+            <input placeholder="Capacity" type="number" value.bind="my_disk_type_model.capacity">
+          </div>
+
+          <div class="field">
+            <label>Units</label>
+            <div class="ui selection dropdown" s-dropdown>
+              <input name="capacity_units" type="hidden" value.bind="my_disk_type_model.capacity_unit_index">
+              <i class="dropdown icon"></i>
+              <div class="default text">Units</div>
+              <div class="menu">
+                <div repeat.for="disk_type of capacityUnits()" class="item" data-value="${capacityUnits().indexOf(disk_type)}">${disk_type}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui cancel button">Cancel</div>
+      <div class="ui approve button">OK</div>
+    </div>
+  </div>
+</template>

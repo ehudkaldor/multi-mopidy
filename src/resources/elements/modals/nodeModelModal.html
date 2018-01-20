@@ -1,0 +1,51 @@
+<template>
+  <require from="resources/attributes/accordionCustomAttribute"></require>
+
+  <div class="ui tiny modal" id="node_type_modal">
+    <i class="close icon"></i>
+    <h3 class="ui inverted attached header">
+      ${activity_word} Node ${my_node_type_model.name}
+    </h3>
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <label>Name Your Node Type</label>
+          <input placeholder="Node Type Name" type="text" value.bind="my_node_type_model.name">
+        </div>
+        <div class="field">
+          <label>NICs</label>
+          <label class="ui right aligned label">right</label>
+          <div repeat.for="nic of my_node_type_model.nics">
+            <div class="ui styled accordion" id="node_type_modal_nics" s-accordion>
+              <div class="title">
+                <i class="dropdown icon"></i>
+                ${nic.nicType.name}
+              </div>
+              <div class="content">
+                me menu
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Disks</label>
+          <div repeat.for="disk of my_node_type_model.disks">
+            <div class="ui styled accordion" id="node_type_modal_nics" s-accordion>
+              <div class="title">
+                <i class="dropdown icon"></i>
+                  ${disk.diskType.name}
+              </div>
+              <div class="content">
+                me menu
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui cancel button">Cancel</div>
+      <div class="ui approve button">OK</div>
+    </div>
+  </div>
+</template>
