@@ -1,0 +1,116 @@
+<template>
+  <require from="resources/elements/node/nic"></require>
+  <require from="resources/elements/modals/nodeTypeModelModal"></require>
+  <require from="resources/elements/modals/diskTypeModelModal"></require>
+  <require from="resources/attributes/accordionCustomAttribute"></require>
+
+  <h3 class="ui center aligned orange header">Elements</h3>
+
+  <div class="ui grid">
+    <div class="row">
+      <button class="ui button" click.delegate="open_node_modal()" class="ui button">
+        New Node
+      </button>
+      <button class="ui button" click.delegate="open_node_modal(0)" class="ui button">
+        Edit Node
+      </button>
+      <button click.delegate="open_disk_modal()" class="ui button">
+        Disk Modal
+      </button>
+      <div click.delegate="open_nic_modal()" class="ui button">
+        NIC Modal
+      </div>
+    </div>
+  </div>
+  <div class="ui celled grid">
+    <!-- <div class="row"> -->
+      <!-- <table class="ui table">
+        <th>
+          Node Type Name
+        </th>
+        <th>
+          Disks
+        </th>
+        <th>
+          NICs
+        </th>
+        <th></th> -->
+        <div class="row">
+          <div class="ui three wide column">
+            Node Type Name
+          </div>
+          <div class="ui six wide column">
+            Disks
+          </div>
+          <div class="ui six wide column">
+            NICs
+          </div>
+          <div class="ui column">
+          </div>
+        </div>
+        <div repeat.for="nodeType of nodeTypes" class="row">
+          <!-- <div class="ui fluid grid"> -->
+            <div class="ui top aligned three wide column">${nodeType.name}</div>
+            <div class="ui top aligned six wide column">
+              <div repeat.for="disk of nodeType.disks" class="ui accordion" id="node_type_modal_disks" s-accordion>
+                <!-- <div class="item"> -->
+                  <div class="title">
+                    <div class="ui sixteen column grid">
+                      <div class="row">
+                        <div class="ui column">
+                          <i class="dropdown icon page disks right floated"></i>
+                        </div>
+                        <div class="ui nine wide column">
+                          ${disk.diskType.name}
+                        </div>
+                        <div class="ui five wide column">
+                          Quantity: ${disk.quantity}
+                        </div>
+                      </div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+                <div class="content">
+                  disk content
+                </div>
+              </div>
+            </div>
+            <div class="ui top aligned six wide column">
+              <div repeat.for="nic of nodeType.nics" class="ui accordion" id="node_type_modal_nics" s-accordion>
+                <!-- <div class="item"> -->
+                  <div class="title">
+                    <div class="ui sixteen column grid">
+                      <div class="row">
+                        <div class="ui column">
+                          <i class="dropdown icon page disks right floated"></i>
+                        </div>
+                        <div class="ui nine wide column">
+                          ${nic.nicType.name}
+                        </div>
+                        <div class="ui five wide column">
+                          ${nic.quantity}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+                  <div class="content">
+                    nic content
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+            <div class="right aligned one wide column">
+              <i click.delegate="open_node_modal(nodeType)" class="top attached edit icon"></i>
+            </div>
+          <!-- </div> -->
+        </div>
+      <!-- </table> -->
+    <!-- </div> -->
+  </div>
+  <div>
+  </div>
+  <nic></nic>
+  <node-type-model-modal my_node_type_model.bind="myNodeTypeModel" activity_word.bind="activity_word"></node-type-model-modal>
+  <disk-type-model-modal my_disk_type_model.bind="myDiskTypeModel" activity_word.bind="activity_word"></disk-type-model-modal>
+</template>
