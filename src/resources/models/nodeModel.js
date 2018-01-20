@@ -1,7 +1,7 @@
-export class NodeModel{
-  constructor(name, disks, nics) {
-    this.name = name;
-    this.disks = disks;
-    this.nics = nics;
+export class NodeModel {
+  constructor(nodeType, quantity) {
+    this.nodeType = nodeType;
+    this.quantity = quantity;
+    this.id = "";
   }
 }
