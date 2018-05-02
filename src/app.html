@@ -1,14 +1,17 @@
 <template>
-  <require from="resources/elements/nav"></require>
-
+  <!-- <require from="partials/nav/nav"></require> -->
   <nav router.bind="router"></nav>
 
-  <div class="ui top attached doubling stackable grid fluid celled basic container">
-    <!-- <div class="two wide column">
-      menu
-    </div> -->
-    <div class="fourteen wide column">
-       <router-view></router-view>
+  <div class="ui stackable grid fluid container">
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+      <div class="sixteen wide column">
+         <router-view></router-view>
+      </div>
     </div>
   </div>
+
 </template>
