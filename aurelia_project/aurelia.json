@@ -1,5 +1,5 @@
 {
-  "name": "swiftstack-sizer",
+  "name": "MultiMopidy",
   "type": "project:application",
   "bundler": {
     "id": "webpack",
