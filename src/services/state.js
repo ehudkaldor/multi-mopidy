@@ -1,5 +1,6 @@
 export class State {
   _playingState = false
+  _playingType = "none"
 
   libraryURI = null
   _tracklist = []
@@ -34,12 +35,12 @@ export class State {
     console.debug("current track changed to " + JSON.stringify(this._currentTrack))
   }
 
-  get playingState() {
-    return this._playingState
+  get playingType() {
+    return this._playingType
   }
 
   set playingState(value) {
-    this._playingState = value
-    console.debug("playing state changed to " + this._playingState)
+    this._playingType = value
+    console.debug("playing type changed to " + this._playingType)
   }
 }
