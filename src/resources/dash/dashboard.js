@@ -30,18 +30,24 @@ export class Dashboard {
       switch(msg.constructor) {
         case Connected:
           // if (msg.isConnected != this.)
-          if (msg.isConnected) {
+          // if (msg.isConnected) {
             console.debug("message listener: got message: connected")
             this.enable()
             // $(dimmable).dimmer('hide')
             // this.disabled = false
-          } else {
-            console.debug("message listener: got message: disconnected")
-            this.disable()
+          // } else {
+            // console.debug("message listener: got message: disconnected")
+            // this.disable()
             // $(dimmable).dimmer({'variation':'inverted', 'closable':false}).dimmer('show')
             // this.disabled = true
-          }
+          // }
           break
+
+        case Disconnected:
+          console.debug("message listener: got message: disconnected")
+          this.disable()
+          break
+
         case ClientState:
           console.debug("got ClientState: " + JSON.stringify(msg))
           // this.isMute = msg.state.isMute

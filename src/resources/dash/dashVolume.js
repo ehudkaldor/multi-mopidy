@@ -28,15 +28,19 @@ export class DashVolume {
     return this.ea.subscribe(this.client.url, msg => {
       switch(msg.constructor) {
         case Connected:
-          console.debug("message listener: got Connected message. isConnected: " + msg.isConnected)
-          if (msg.isConnected) {
+          // console.debug("message listener: got Connected message. isConnected: " + msg.isConnected)
+          // if (msg.isConnected) {
             console.debug("message listener: got message: connected")
             this.enable()
-          } else {
-            console.debug("message listener: got message: disconnected")
-            this.disable()
-          }
+          // } else {
+            // console.debug("message listener: got message: disconnected")
+            // this.disable()
           break
+        case Disconnected:
+          console.debug("message listener: got message: disconnected")
+          this.disable()
+          break
+
         case VolumeChanged:
           console.debug("message listener: got message: volume changed to " + JSON.stringify(msg))
           // this.volume = msg.vol
