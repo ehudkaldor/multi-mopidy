@@ -5,6 +5,7 @@ export function configure(config) {
     PLATFORM.moduleName('./dash/dashClient'),
     PLATFORM.moduleName('./dash/dashControls'),
     PLATFORM.moduleName('./dash/dashDetails'),
+    PLATFORM.moduleName('./dash/dashStreamDetails'),
     PLATFORM.moduleName('./dash/dashPlaylist'),
     PLATFORM.moduleName('./dash/dashSearch'),
     PLATFORM.moduleName('./dash/dashSong'),
