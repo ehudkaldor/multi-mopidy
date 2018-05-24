@@ -18,7 +18,8 @@
                 <img class="ui tiny image" src.bind="imageUrl">
               </div>
               <div class="meta">
-                <dash-details client.bind="client"></dash-details>
+                <dash-details if.bind="client.state.playingType == 'local'" client.bind="client"></dash-details>
+                <dash-stream-details if.bind="client.state.playingType == 'streaming'" client.bind="client"></dash-stream-details>
               </div>
             </div>
             <!-- <div class="one wide middle aligned column right control">

@@ -8,6 +8,11 @@ export class DashClient {
   progress = 10
   @bindable client
 
+  isPlayingType(wantedState) {
+    console.debug(`checking playing type. wanted: ${wantedState}, known: ${this.client.state.playingType}`)
+    return this.client.state.playingType === wantedState
+  }
+
 
   attached() {
     console.debug("attached dash-client. client: " + JSON.stringify(this.client))
