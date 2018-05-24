@@ -2,7 +2,7 @@
   <!-- <form class="ui form"> -->
     <require from="resources/value-converters/time-format"></require>
     <div class="ui fluid segment">
-      <s-progress class="tiny indicating" progress.bind="current_pos" total.bind="time_text" hover_text.bind="current_pos | timeFormat" label.bind="current_pos | timeFormat"></s-progress>
+      <s-progress class="tiny indicating" progress.bind="client.state.timePosition / 1000" total.bind="client.state.timeLength / 1000" label.bind="client.state.timePosition | timeFormat"></s-progress>
       <div class="ui inverted blue ribbon label">Artist</div>
       <div class="ui small blue header">${artist_text}</div>
       <div class="ui blue ribbon label">Album</div>
@@ -10,7 +10,7 @@
       <div class="ui blue ribbon label">Track</div>
       <div class="ui small blue header">${track_text}</div>
       <div class="ui blue ribbon label">Time</div>
-      <div class="ui small blue header">${ current_pos | timeFormat } / ${ time_text | timeFormat }</div>
+      <div class="ui small blue header">${ client.state.timePosition | timeFormat } / ${ client.state.timeLength | timeFormat }</div>
     </div>
   <!-- </form> -->
 </template>
