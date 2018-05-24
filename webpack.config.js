@@ -12,7 +12,7 @@ const when = (condition, config, negativeConfig) =>
   condition ? ensureArray(config) : ensureArray(negativeConfig);
 
 // primary config:
-const title = 'SwiftStack Sizer';
+const title = 'MultiMopidy';
 const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, 'src');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
@@ -24,6 +24,9 @@ const cssRules = [
 
 module.exports = ({production, server, extractCss, coverage} = {}) => ({
   resolve: {
+    alias: {
+      '../../theme.config$': path.join(__dirname, 'my-semantic-theme/theme.config')
+    },
     extensions: ['.js'],
     modules: [srcDir, 'node_modules'],
   },
@@ -39,9 +42,23 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
   },
   devServer: {
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://10.0.30.54:7777',
+    //     secure: false,
+    //     pathRewrite: {
+    //       '^/api' : ''
+    //     },
+    //     logLevel: 'debug'
+    //        // changeOrigin: true
+    //   }
+    // },
     contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
-    historyApiFallback: true
+    historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
@@ -62,6 +79,12 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
         // CSS required in templates cannot be extracted safely
         // because Aurelia would try to require it again in runtime
         use: cssRules
+      },
+      {
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'less-loader']
+        }),
+        test: /\.less$/
       },
       { test: /\.html$/i, loader: 'html-loader' },
       { test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
@@ -86,6 +109,10 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
     }),
+    // this handles the bundled .css output file
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new ProvidePlugin({
       'Promise': 'bluebird'
     }),
@@ -106,9 +133,9 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     ...when(production, new CommonsChunkPlugin({
       name: ['common']
     })),
-    ...when(production, new CopyWebpackPlugin([
-      { from: 'assets/favicon.ico', to: 'favicon.ico' }
-    ])),
+    // ...when(production, new CopyWebpackPlugin([
+    //   { from: 'src/assets/favicon.ico', to: 'favicon.ico' }
+    // ])),
     ...when(production, new UglifyJsPlugin({
       sourceMap: true
     }))
