@@ -120,6 +120,9 @@ export class DashControls {
     if (!this.disabled){
       console.debug("stop clicked")
       this.client.playbackController.stop()
+      console.debug("in stop(). client: " + JSON.stringify(this.client))
+    } else {
+      console.debug("stop clicked while disabled")
     }
   }
 
