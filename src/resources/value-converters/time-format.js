@@ -9,7 +9,7 @@ export class TimeFormatValueConverter {
     var minutes = Math.floor((numVal / (60 * 1000)) % 60)
     var hours = Math.floor((numVal / (60 * 60 * 1000)) % 24)
 
-    console.debug("converting " + value + " to " + minutes + ":" + seconds)
+    // console.debug("converting " + value + " to " + minutes + ":" + seconds)
     if ( seconds < 10 )
       seconds = "0" + seconds
     if ( minutes < 10 )
