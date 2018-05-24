@@ -44,9 +44,10 @@ export class MultiMopidy {
 
   async getClients() {
     console.debug("getClients called")
-    this.isRequesting = true;
+    this.isRequesting = true
     return new Promise(resolve => {
       setTimeout(() => {
+        this.isRequesting = false
         resolve(this.clients)
       }, latency)
     })
