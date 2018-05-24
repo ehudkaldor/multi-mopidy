@@ -43,7 +43,7 @@ export class State {
 
   set timePosition(value) {
     this._timePosition = value
-    console.debug("time position set to " + JSON.stringify(this._timePosition))
+    // console.debug("time position set to " + JSON.stringify(this._timePosition))
   }
 
   get timeLength() {
