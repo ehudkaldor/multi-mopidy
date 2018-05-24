@@ -1,0 +1,19 @@
+body {
+}
+
+.ui.icon.vertical.menu.control.right {
+  border-right:none !important;
+  margin:0 !important;
+}
+
+.column {
+  padding:0 !important;
+}
+
+.card {
+  padding:0 !important;
+}
+
+.paddingless {
+  padding:0 !important;
+}
