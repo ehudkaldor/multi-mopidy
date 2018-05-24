@@ -2,8 +2,9 @@ import { bindable, inject } from 'aurelia-framework'
 import { MultiMopidy } from 'services/multi-mopidy.js'
 import { Snapcast } from 'services/snapcast.js'
 import { NewClientModel } from 'models/newClientModel.js'
+import { Router } from 'aurelia-router'
 
-@inject(MultiMopidy, Snapcast)
+@inject(MultiMopidy, Snapcast, Router)
 export class Broadcasters {
   clients = []
 
@@ -12,8 +13,9 @@ export class Broadcasters {
   addText = "Add Broadcaster"
   headerText = "Broadcasters"
 
-  constructor(multiMopidy, snapcast) {
+  constructor(multiMopidy, snapcast, router) {
     console.debug("c'tor")
+    this.router = router
     this.snapcast = snapcast
     this.snapcast.serverGetStatus()
     this.mm = multiMopidy
@@ -69,6 +71,10 @@ export class Broadcasters {
     })
     .modal('show')
     console.debug("after modal")
+  }
+
+  openClient(client) {
+    this.router.navigateToRoute("broadcaster", {id:client.name})
   }
 
   delClient(client) {
