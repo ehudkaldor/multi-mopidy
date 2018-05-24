@@ -1,8 +1,18 @@
 export class TracklistController {
-  client = null
+  _client = null
+  _state = null
 
-  constructor(client) {
-    this.client = client
+  constructor(client, state) {
+    this._client = client
+    this._state = state
+  }
+
+  get state() {
+    return this._state
+  }
+
+  get client() {
+    return this._client
   }
 
   add() {
@@ -44,7 +54,11 @@ export class TracklistController {
   getNextTrack(nextTo) {
     try {
       console.debug("getNextTrack")
-      return this.client.tracklist.nextTrack(JSON.parse(nextTo))
+      this.client.tracklist.nextTrack(JSON.parse(nextTo)).then( nextTrack => {
+        this.state.nextTrack = nextTrack
+        console.debug("next track: " + JSON.stringify(this._state.nextTrack))
+        return nextTrack
+      })
     } catch(e) {
       console.warn("exception when calling getNextTrack(): " + e)
     }
@@ -53,7 +67,11 @@ export class TracklistController {
   getPrevTrack(previousTo) {
     try {
       console.debug("getPrevTrack")
-      return this.client.tracklist.previousTrack(JSON.parse(previousTo))
+      this.client.tracklist.previousTrack(JSON.parse(previousTo)).then( prevTrack => {
+        this.state.previousTrack = prevTrack
+        console.debug("previous track: " + JSON.stringify(this._state.previousTrack))
+        return prevTrack
+      })
     } catch(e) {
       console.warn("exception when calling getPrevTrack(): " + e)
     }
