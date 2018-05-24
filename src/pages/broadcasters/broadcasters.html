@@ -24,6 +24,9 @@
           <thead>
             <tr>
               <th>
+
+              </th>
+              <th>
                 Broadcaster Name
               </th>
               <th>
@@ -34,6 +37,11 @@
               </th>
             </tr>
             <tr repeat.for="client of clients">
+              <td>
+                <a class="ui link" data-content="Open ${client.name}" data-position="right center" click.delegate="openClient(client)" s-popup>
+                  <i class="ui link large sign in alternate icon"></i>
+                </a>
+              </td>
               <td>
                 ${client.name}
               </td>
