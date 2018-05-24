@@ -27,6 +27,8 @@ export class SProgressCustomElement {
   @bindable hover_text
   @bindable color
   @bindable size
+  @bindable label
+  @bindable labeled
 
   constructor(element) {
     this.element = element;
@@ -71,7 +73,7 @@ export class SProgressCustomElement {
     } else {
       $(this.element).progress('set progress', newValue)
     }
-    console.debug("progress. total is " + this.total + ", progress is " + this.progress)
+    // console.debug("progress. total is " + this.total + ", progress is " + this.progress)
 
   }
 }
