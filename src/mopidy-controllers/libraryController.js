@@ -1,8 +1,10 @@
 export class LibraryController {
   client = null
+  state = null
 
-  constructor(client) {
+  constructor(client, state) {
     this.client = client
+    this.state = state
   }
 
   browse(uri = null) {

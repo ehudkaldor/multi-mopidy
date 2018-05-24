@@ -1,8 +1,10 @@
 export class MixerController {
   client = null
+  state = null
 
-  constructor(client) {
+  constructor(client, state) {
     this.client = client
+    this.state = state
   }
 
   getVolume() {

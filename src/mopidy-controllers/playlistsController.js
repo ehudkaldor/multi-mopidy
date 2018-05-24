@@ -1,8 +1,10 @@
 export class PlaylistsController {
   client = null
+  state = null
 
-  constructor(client) {
+  constructor(client, state) {
     this.client = client
+    this.state = state
   }
 
   getPlaylists() {
@@ -12,5 +14,5 @@ export class PlaylistsController {
     } catch(e) {
       console.warn("exception when calling getPlaylists(): " + e)
     }
-  }  
+  }
 }

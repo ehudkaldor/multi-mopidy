@@ -1,8 +1,10 @@
-export class HistoryController {  
+export class HistoryController {
     client = null
+    state = null
 
-    constructor(client) {
+    constructor(client, state) {
       this.client = client
+      this.state = state
     }
 
 }
