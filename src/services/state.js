@@ -4,7 +4,8 @@ export class State {
 
   libraryURI = null
   _tracklist = []
-  timePosition = 0
+  _timePosition = 0
+  _timeLength = -1
   seeking = false
 
   volume = 0
@@ -26,6 +27,7 @@ export class State {
     this.tracklist = value
     console.debug("track list changed to " + JSON.stringify(this._tracklist))
   }
+
   get currentTrack() {
     return this._currentTrack
   }
@@ -35,11 +37,29 @@ export class State {
     console.debug("current track changed to " + JSON.stringify(this._currentTrack))
   }
 
+  get timePosition() {
+    return this._timePosition
+  }
+
+  set timePosition(value) {
+    this._timePosition = value
+    console.debug("time position set to " + JSON.stringify(this._timePosition))
+  }
+
+  get timeLength() {
+    return this._timeLength
+  }
+
+  set timeLength(value) {
+    this._timeLength = value
+    console.debug(`time length set to ${this._timeLength}`)
+  }
+
   get playingType() {
     return this._playingType
   }
 
-  set playingState(value) {
+  set playingType(value) {
     this._playingType = value
     console.debug("playing type changed to " + this._playingType)
   }
