@@ -50,19 +50,28 @@ export class Dashboard {
 
         case ClientState:
           console.debug("got ClientState: " + JSON.stringify(msg))
+
+          if (msg.state.connected) {
+            console.debug("message listener: got message: connected")
+            this.enable()
+          } else {
+            console.debug("message listener: got message: disconnected")
+            this.disable()
+          }
+
           // this.isMute = msg.state.isMute
           // classes = ".volume.item." + this.client.name
-          if (msg.state.connected) {
-            console.debug("message listener: got ClientState: connected")
-            this.enable()
-            // $(dimmable).dimmer('hide')
-            // this.disabled = false
-          } else {
-            console.debug("message listener: got ClientState: disconnected")
-            this.disable()
-            // $(dimmable).dimmer({'variation':'inverted', 'closable':false}).dimmer('show')
-            // this.disabled = true
-          }
+          // if (msg.state.connected) {
+          //   console.debug("message listener: got ClientState: connected")
+          //   this.enable()
+          //   // $(dimmable).dimmer('hide')
+          //   // this.disabled = false
+          // } else {
+          //   console.debug("message listener: got ClientState: disconnected")
+          //   this.disable()
+          //   // $(dimmable).dimmer({'variation':'inverted', 'closable':false}).dimmer('show')
+          //   // this.disabled = true
+          // }
           break
       }
     })
